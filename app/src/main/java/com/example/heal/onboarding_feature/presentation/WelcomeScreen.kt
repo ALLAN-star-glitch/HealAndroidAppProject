@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -32,21 +34,23 @@ fun WelcomeScreen(
     onNavigateToNextScreen: () -> Unit
 ) {
     HealTheme {
-        Box(modifier = Modifier.fillMaxSize()) {
-            // Background image that extends into the status bar
-            Image(
-                painter = painterResource(id = R.drawable.bckground),
-                contentDescription = "Welcome Background",
-                modifier = Modifier.fillMaxSize(), // Make image cover the entire screen
-                contentScale = ContentScale.Crop
-            )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.linearGradient(
+                        colors = listOf(
+                            Color(0xFF6A0DAD), // Purple
+                            Color(0xFF9B4DFF), // Light Purple
+                            Color(0xFFAB7BFF), // Lavender
+                            Color(0xFFD0A5FF)  // Light Lavender
+                        ),
+                        start = Offset(1000f, 1000f),
+                        end = Offset(0f, 0f) // Diagonal gradient
+                    )
+                )
 
-            // Overlay with opacity (semi-transparent black) for the image
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.4f)) // Semi-transparent overlay
-            )
+        ) {
 
             Column(
                 modifier = Modifier
@@ -55,6 +59,17 @@ fun WelcomeScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
             ) {
+
+                // Logo
+                Image(
+                    painter = painterResource(id = R.drawable.logotwo), // Replace with your logo's resource ID
+                    contentDescription = "App Logo",
+                    modifier = Modifier
+                        .size(250.dp) // Adjust size as needed
+                        .padding(bottom = 16.dp),
+                    contentScale = ContentScale.Fit
+                )
+
                 // Welcome text
                 Text(
                     text = "Welcome to Heal",
@@ -80,11 +95,13 @@ fun WelcomeScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.Center
                 ) {
                     Button(
                         onClick = onNavigateToNextScreen,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(end = 8.dp), // Add spacing on the right
                         colors = androidx.compose.material3.ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.primary,
                             contentColor = MaterialTheme.colorScheme.onPrimary
@@ -95,7 +112,9 @@ fun WelcomeScreen(
 
                     Button(
                         onClick = onNavigateToNextScreen,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(start = 8.dp), // Add spacing on the left
                         colors = androidx.compose.material3.ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.primary,
                             contentColor = MaterialTheme.colorScheme.onPrimary
@@ -104,6 +123,8 @@ fun WelcomeScreen(
                         Text("Get Started", style = MaterialTheme.typography.labelLarge)
                     }
                 }
+
+
 
                 // Powered by text
                 Text(

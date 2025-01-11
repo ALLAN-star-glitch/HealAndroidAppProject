@@ -20,13 +20,13 @@ fun ButtonUi(
     textColor: Color = MaterialTheme.colorScheme.onPrimary,
     textStyle: TextStyle = MaterialTheme.typography.titleMedium,
     fontSize: Int = 14,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
 
     Button(
         onClick = onClick, colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor, contentColor = textColor
-        ), shape = RoundedCornerShape(10.dp)
+        )
     ) {
 
 
