@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Introduction
 
 This is a template for doing Android development using GitLab and [fastlane](https://fastlane.tools/).
@@ -84,3 +85,7 @@ scheme you may want to change this.
     - "export VERSION_CODE=$(($CI_PIPELINE_IID)) && echo $VERSION_CODE"
     - "export VERSION_SHA=`echo ${CI_COMMIT_SHA:0:8}` && echo $VERSION_SHA"
 ```
+=======
+# HealAndroidAppProject
+Heal connects clients with counselors, fostering personalized support, mental wellness, and accessible professional guidance.
+>>>>>>> 9f15a5e7b600e8bcb2d77a6068513ba2b26a334f
